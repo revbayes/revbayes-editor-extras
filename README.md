@@ -1,2 +1,6 @@
 # revbayes-editor-extras
-helper files for editing RevBayes (.Rev) source
+
+This repository contains helper files for editing RevBayes (.Rev) source.
+
+Currently supported:
+* vim (syntax highlighting)
