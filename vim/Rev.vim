@@ -18,191 +18,198 @@ endif
 syn case match
 
 " Comment
-syn match rComment contains=@Spell "#.*"
+syn match revComment contains=@Spell "#.*"
 
 " Roxygen
-syn match rOKeyword contained "@\(param\|return\|name\|rdname\|examples\|include\)"
-syn match rOKeyword contained "@\(S3method\|TODO\|aliases\|alias\|assignee\|author\|callGraphDepth\|callGraph\)"
-syn match rOKeyword contained "@\(callGraphPrimitives\|concept\|exportClass\|exportMethod\|exportPattern\|export\|formals\)"
-syn match rOKeyword contained "@\(format\|importClassesFrom\|importFrom\|importMethodsFrom\|import\|keywords\)"
-syn match rOKeyword contained "@\(method\|nord\|note\|references\|seealso\|setClass\|slot\|source\|title\|usage\)"
-syn match rOComment contains=@Spell,rOKeyword "#'.*"
+syn match revOKeyword contained "@\(param\|return\|name\|rdname\|examples\|include\)"
+syn match revOKeyword contained "@\(S3method\|TODO\|aliases\|alias\|assignee\|author\|callGraphDepth\|callGraph\)"
+syn match revOKeyword contained "@\(callGraphPrimitives\|concept\|exportClass\|exportMethod\|exportPattern\|export\|formals\)"
+syn match revOKeyword contained "@\(format\|importClassesFrom\|importFrom\|importMethodsFrom\|import\|keywords\)"
+syn match revOKeyword contained "@\(method\|nord\|note\|references\|seealso\|setClass\|slot\|source\|title\|usage\)"
+syn match revOComment contains=@Spell,rOKeyword "#'.*"
 
 
 if &filetype == "rhelp"
   " string enclosed in double quotes
-  syn region rString contains=rSpecial,@Spell start=/"/ skip=/\\\\\|\\"/ end=/"/
+  syn region revString contains=rSpecial,@Spell start=/"/ skip=/\\\\\|\\"/ end=/"/
   " string enclosed in single quotes
-  syn region rString contains=rSpecial,@Spell start=/'/ skip=/\\\\\|\\'/ end=/'/
+  syn region revString contains=rSpecial,@Spell start=/'/ skip=/\\\\\|\\'/ end=/'/
 else
   " string enclosed in double quotes
-  syn region rString contains=rSpecial,rStrError,@Spell start=/"/ skip=/\\\\\|\\"/ end=/"/
+  syn region revString contains=rSpecial,rStrError,@Spell start=/"/ skip=/\\\\\|\\"/ end=/"/
   " string enclosed in single quotes
-  syn region rString contains=rSpecial,rStrError,@Spell start=/'/ skip=/\\\\\|\\'/ end=/'/
+  syn region revString contains=rSpecial,rStrError,@Spell start=/'/ skip=/\\\\\|\\'/ end=/'/
 endif
 
-syn match rStrError display contained "\\."
+syn match revStrError display contained "\\."
 
 
 " New line, carriage return, tab, backspace, bell, feed, vertical tab, backslash
-syn match rSpecial display contained "\\\(n\|r\|t\|b\|a\|f\|v\|'\|\"\)\|\\\\"
+syn match revSpecial display contained "\\\(n\|r\|t\|b\|a\|f\|v\|'\|\"\)\|\\\\"
 
 " Hexadecimal and Octal digits
-syn match rSpecial display contained "\\\(x\x\{1,2}\|[0-8]\{1,3}\)"
+syn match revSpecial display contained "\\\(x\x\{1,2}\|[0-8]\{1,3}\)"
 
 " Unicode characters
-syn match rSpecial display contained "\\u\x\{1,4}"
-syn match rSpecial display contained "\\U\x\{1,8}"
-syn match rSpecial display contained "\\u{\x\{1,4}}"
-syn match rSpecial display contained "\\U{\x\{1,8}}"
+syn match revSpecial display contained "\\u\x\{1,4}"
+syn match revSpecial display contained "\\U\x\{1,8}"
+syn match revSpecial display contained "\\u{\x\{1,4}}"
+syn match revSpecial display contained "\\U{\x\{1,8}}"
 
 " Statement
-syn keyword rStatement   break next return
-syn keyword rConditional if else
-syn keyword rRepeat      for in repeat while
+syn keyword revStatement   break next return
+syn keyword revConditional if else
+syn keyword revRepeat      for in repeat while
 
 " Constant (not really)
-syn keyword rConstant true false
-syn keyword rConstant R.version.string
-
-syn keyword rNumber   NA_integer_ NA_real_ NA_complex_ NA_character_ 
+syn keyword revConstant true false
+syn keyword revNumber   NA_integer_ NA_real_ NA_complex_ NA_character_ 
 
 " Constants
-syn keyword rConstant NULL
-syn keyword rBoolean  true false
-syn keyword rNumber   NA Inf NaN 
+syn keyword revConstant NULL
+syn keyword revBoolean  true false
+syn keyword revNumber   NA Inf NaN 
 
 " integer
-syn match rInteger "\<\d\+L"
-syn match rInteger "\<0x\([0-9]\|[a-f]\|[A-F]\)\+L"
-syn match rInteger "\<\d\+[Ee]+\=\d\+L"
+syn match revInteger "\<\d\+L"
+syn match revInteger "\<0x\([0-9]\|[a-f]\|[A-F]\)\+L"
+syn match revInteger "\<\d\+[Ee]+\=\d\+L"
 
 " number with no fractional part or exponent
-syn match rNumber "\<\d\+\>"
+syn match revNumber "\<\d\+\>"
 " hexadecimal number 
-syn match rNumber "\<0x\([0-9]\|[a-f]\|[A-F]\)\+"
+syn match revNumber "\<0x\([0-9]\|[a-f]\|[A-F]\)\+"
 
 " floating point number with integer and fractional parts and optional exponent
-syn match rFloat "\<\d\+\.\d*\([Ee][-+]\=\d\+\)\="
+syn match revFloat "\<\d\+\.\d*\([Ee][-+]\=\d\+\)\="
 " floating point number with no integer part and optional exponent
-syn match rFloat "\<\.\d\+\([Ee][-+]\=\d\+\)\="
+syn match revFloat "\<\.\d\+\([Ee][-+]\=\d\+\)\="
 " floating point number with no fractional part and optional exponent
-syn match rFloat "\<\d\+[Ee][-+]\=\d\+"
+syn match revFloat "\<\d\+[Ee][-+]\=\d\+"
 
-" complex number
-syn match rComplex "\<\d\+i"
-syn match rComplex "\<\d\++\d\+i"
-syn match rComplex "\<0x\([0-9]\|[a-f]\|[A-F]\)\+i"
-syn match rComplex "\<\d\+\.\d*\([Ee][-+]\=\d\+\)\=i"
-syn match rComplex "\<\.\d\+\([Ee][-+]\=\d\+\)\=i"
-syn match rComplex "\<\d\+[Ee][-+]\=\d\+i"
-
-syn match rOperator    "&"
-syn match rOperator    '-'
-syn match rOperator    '*'
-syn match rOperator    '+'
-syn match rOperator    '='
+" operators
+syn match revOperator    "&"
+syn match revOperator    '-'
+syn match revOperator    '*'
+syn match revOperator    '+'
+syn match revOperator    '='
 if &filetype != "rmd" && &filetype != "rrst"
-  syn match rOperator    "[|!<>^~/:]"
+  syn match revOperator    "[|!<>^~/:]"
 else
-  syn match rOperator    "[|!<>^~`/:]"
+  syn match revOperator    "[|!<>^~`/:]"
 endif
-syn match rOperator    "%\{2}\|%\S*%"
-syn match rOpError  '*\{3}'
-syn match rOpError  '//'
-syn match rOpError  '&&&'
-syn match rOpError  '|||'
-syn match rOpError  '<<'
-syn match rOpError  '>>'
+syn match revOperator    "%\{2}\|%\S*%"
+syn match revOpError  '*\{3}'
+syn match revOpError  '//'
+syn match revOpError  '&&&'
+syn match revOpError  '|||'
+syn match revOpError  '<<'
+syn match revOpError  '>>'
 
-syn match rArrow "<\{1,2}-"
-syn match rArrow "->\{1,2}"
+syn match revArrow "<\{1,2}-"
+syn match revArrow "->\{1,2}"
 
 " Special
-syn match rDelimiter "[,;:]"
+syn match revDelimiter "[,;:]"
 
 " Error
 if exists("g:r_syntax_folding")
-  syn region rRegion matchgroup=Delimiter start=/(/ matchgroup=Delimiter end=/)/ transparent contains=ALLBUT,rError,rBraceError,rCurlyError fold
-  syn region rRegion matchgroup=Delimiter start=/{/ matchgroup=Delimiter end=/}/ transparent contains=ALLBUT,rError,rBraceError,rParenError fold
-  syn region rRegion matchgroup=Delimiter start=/\[/ matchgroup=Delimiter end=/]/ transparent contains=ALLBUT,rError,rCurlyError,rParenError fold
+  syn region revRegion matchgroup=Delimiter start=/(/ matchgroup=Delimiter end=/)/ transparent contains=ALLBUT,revError,revBraceError,revCurlyError fold
+  syn region revRegion matchgroup=Delimiter start=/{/ matchgroup=Delimiter end=/}/ transparent contains=ALLBUT,revError,revBraceError,revParenError fold
+  syn region revRegion matchgroup=Delimiter start=/\[/ matchgroup=Delimiter end=/]/ transparent contains=ALLBUT,revError,revCurlyError,revParenError fold
 else
-  syn region rRegion matchgroup=Delimiter start=/(/ matchgroup=Delimiter end=/)/ transparent contains=ALLBUT,rError,rBraceError,rCurlyError
-  syn region rRegion matchgroup=Delimiter start=/{/ matchgroup=Delimiter end=/}/ transparent contains=ALLBUT,rError,rBraceError,rParenError
-  syn region rRegion matchgroup=Delimiter start=/\[/ matchgroup=Delimiter end=/]/ transparent contains=ALLBUT,rError,rCurlyError,rParenError
+  syn region revRegion matchgroup=Delimiter start=/(/ matchgroup=Delimiter end=/)/ transparent contains=ALLBUT,revError,revBraceError,revCurlyError
+  syn region revRegion matchgroup=Delimiter start=/{/ matchgroup=Delimiter end=/}/ transparent contains=ALLBUT,revError,revBraceError,revParenError
+  syn region revRegion matchgroup=Delimiter start=/\[/ matchgroup=Delimiter end=/]/ transparent contains=ALLBUT,revError,revCurlyError,revParenError
 endif
 
-syn match rError      "[)\]}]"
-syn match rBraceError "[)}]" contained
-syn match rCurlyError "[)\]]" contained
-syn match rParenError "[\]}]" contained
+syn match revError      "[)\]}]"
+syn match revBraceError "[)}]" contained
+syn match revCurlyError "[)\]]" contained
+syn match revParenError "[\]}]" contained
 
 " Source list of R functions. The list is produced by the Vim-R-plugin
 " http://www.vim.org/scripts/script.php?script_id=2628
 runtime r-plugin/functions.vim
 
-syn match rDollar display contained "\$"
-syn match rDollar display contained "@"
+syn match revDollar display contained "\$"
+syn match revDollar display contained "@"
 
 " List elements will not be highlighted as functions:
-syn match rLstElmt "\$[a-zA-Z0-9\\._]*" contains=rDollar
-syn match rLstElmt "@[a-zA-Z0-9\\._]*" contains=rDollar
+syn match revLstElmt "\$[a-zA-Z0-9\\._]*" contains=revDollar
+syn match revLstElmt "@[a-zA-Z0-9\\._]*" contains=revDollar
 
 " Functions that may add new objects
-syn keyword rPreProc     library require attach detach source
+syn keyword revPreProc     library require attach detach source
 
 if &filetype == "rhelp"
-    syn match rHelpIdent '\\method'
-    syn match rHelpIdent '\\S4method'
+    syn match revHelpIdent '\\method'
+    syn match revHelpIdent '\\S4method'
 endif
 
 " Type
-syn keyword rType Real RealPos Integer Natural String Probability
+syn keyword revType Real RealPos Integer Natural String Probability
 
 " Name of object with spaces
 if &filetype != "rmd" && &filetype != "rrst"
-  syn region rNameWSpace start="`" end="`"
+  syn region revNameWSpace start="`" end="`"
 endif
 
 if &filetype == "rhelp"
-  syn match rhPreProc "^#ifdef.*" 
-  syn match rhPreProc "^#endif.*" 
-  syn match rhSection "\\dontrun\>"
+  syn match revhPreProc "^#ifdef.*" 
+  syn match revhPreProc "^#endif.*" 
+  syn match revhSection "\\dontrun\>"
 endif
 
+" RevBayes additions
+" MJL 170510: The proper way to do this would be to load in a list of keywords
+"             supplied dynamically from RevBayes through the `ls(true)`
+"             listing, and retrieved a vim plugin and the `runtime` command.
+syn match revDistribution "dn[A-Z][a-zA-Z0-9]*"
+syn match revMove         "mv[A-Z][a-zA-Z0-9]*"
+syn match revMonitor      "mn[A-Z][a-zA-Z0-9]*"
+syn match revFunction     "fn[A-Z][a-zA-Z0-9]*"
+syn keyword revProcedure mcmc model readTrees readDiscreteCharacterData readContinuousCharacterData readDataDelimitedFile
+
+
 " Define the default highlighting.
-hi def link rArrow       Statement	
-hi def link rBoolean     Boolean
-hi def link rBraceError  Error
-hi def link rComment     Comment
-hi def link rOComment    Comment
-hi def link rComplex     Number
-hi def link rConditional Conditional
-hi def link rConstant    Constant
-hi def link rCurlyError  Error
-hi def link rDelimiter   Delimiter
-hi def link rDollar      SpecialChar
-hi def link rError       Error
-hi def link rFloat       Float
-hi def link rFunction    Function
-hi def link rHelpIdent   Identifier
-hi def link rhPreProc    PreProc
-hi def link rhSection    PreCondit
-hi def link rInteger     Number
-hi def link rLstElmt	 Normal
-hi def link rNameWSpace  Normal
-hi def link rNumber      Number
-hi def link rOperator    Operator
-hi def link rOpError     Error
-hi def link rParenError  Error
-hi def link rPreProc     PreProc
-hi def link rRepeat      Repeat
-hi def link rSpecial     SpecialChar
-hi def link rStatement   Statement
-hi def link rString      String
-hi def link rStrError    Error
-hi def link rType        Type
-hi def link rOKeyword    Title
+hi def link revDistribution Function
+hi def link revMove        Function
+hi def link revMonitor     Function
+hi def link revFunction    Function
+hi def link revProcedure   Function
+hi def link revArrow       Statement	
+hi def link revBoolean     Boolean
+hi def link revBraceError  Error
+hi def link revComment     Comment
+hi def link revOComment    Comment
+hi def link revComplex     Number
+hi def link revConditional Conditional
+hi def link revConstant    Constant
+hi def link revCurlyError  Error
+hi def link revDelimiter   Delimiter
+hi def link revDollar      SpecialChar
+hi def link revError       Error
+hi def link revFloat       Float
+hi def link revFunction    Function
+hi def link revHelpIdent   Identifier
+hi def link revhPreProc    PreProc
+hi def link revhSection    PreCondit
+hi def link revInteger     Number
+hi def link revLstElmt	 Normal
+hi def link revNameWSpace  Normal
+hi def link revNumber      Number
+hi def link revOperator    Operator
+hi def link revOpError     Error
+hi def link revParenError  Error
+hi def link revPreProc     PreProc
+hi def link revRepeat      Repeat
+hi def link revSpecial     SpecialChar
+hi def link revStatement   Statement
+hi def link revString      String
+hi def link revStrError    Error
+hi def link revType        Type
+hi def link revOKeyword    Title
 
 let b:current_syntax="Rev"
 
