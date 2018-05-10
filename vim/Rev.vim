@@ -62,14 +62,14 @@ syn keyword rConditional if else
 syn keyword rRepeat      for in repeat while
 
 " Constant (not really)
-syn keyword rConstant T F LETTERS letters month.ab month.name pi
+syn keyword rConstant true false
 syn keyword rConstant R.version.string
 
 syn keyword rNumber   NA_integer_ NA_real_ NA_complex_ NA_character_ 
 
 " Constants
 syn keyword rConstant NULL
-syn keyword rBoolean  FALSE TRUE
+syn keyword rBoolean  true false
 syn keyword rNumber   NA Inf NaN 
 
 " integer
