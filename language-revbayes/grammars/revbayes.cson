@@ -1,0 +1,70 @@
+#
+#
+#       This is a simple(incomplete) grammar for working with RevBayes in the Atom text
+#       editor.It should work with any themes that respect the TextMate nomenclature,
+#       but I haven't tested it extensively in any sense of the word.
+#
+#       Maintainer: Tim Gervascio <tim.gervascio@gmail.com>
+#
+#
+scopeName: 'source.rb'
+name: 'RevBayes'
+fileTypes: [
+  'rb'
+  'rev'
+  'Rev'
+]
+
+patterns: [
+  {
+        #number
+        match: '(\\d+\\.?\\d+)|(\\d+)'
+        name: 'constant.numeric'
+  }
+  {
+        #comments with # delimiter
+        match: '#.*$'
+        name: 'comment'
+  }
+  {
+        #revbayes procedures
+        #as pointed out in M. Landis' Vim grammar this should be done procedurally, but this is just  first pass really.
+        match: '\\b(mcmc|model|readTrees|readDiscreteCharacterData|readContinuousCharacterData|readDataDelimitedFile|clade)'
+        name: 'entity.name.function'
+  }
+  {
+        #special statements
+        match: '\\b(NULL|true|false|NA|Inf|NaN)'
+        name: 'keyword.operator'
+  }
+  {
+        #functional statements
+        match: '\\b(break|next|return|if|else|for|in|repeat|while)'
+        name: 'keyword.control'
+  }
+  {
+        #revbayes functions/distributions etc.
+        match: '(dn\\w*)|(mv\\w*)|(mn\\w*)|(fn\\w*)'
+        name: 'storage.function'
+  }
+  {
+        #variables declared with <- operator
+        match: '(^\\S*)(| )(?=\\<-)'
+        name: 'variable.other'
+  }
+  {
+        #variables declared with ~ operator
+        match: '(^\\S*)(| )(?=\\~)'
+        name: 'variable.other'
+  }
+  {
+        #variables declared with = operator
+        match: '(^\\S*)(| )(?=\\:=)'
+        name: 'variable.other'
+  }
+  {
+        #constants declared with = operator
+        match: '(^\\S*)(| )(?=\\=)'
+        name: 'variable.other'
+  }
+]
