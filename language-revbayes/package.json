@@ -1,0 +1,14 @@
+{
+  "name": "language-revbayes",
+  "version": "0.0.0",
+  "description": "A quick little cson grammar for syntax highlighting of RevBayes code in Atom",
+  "keywords": [
+    "language",
+    "grammar"
+  ],
+  "repository": "https://github.com/",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
