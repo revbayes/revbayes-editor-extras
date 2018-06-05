@@ -2,11 +2,11 @@ This is a quick, simple, and incomplete RevBayes grammar for use in the Atom tex
 
 It should automatically recognize Rev source files by the file extensions .rb or .Rev.
 
-#Easy Installation
+# Easy Installation
 
 You should be able to get this working simply by searching for 'language-revbayes' under the packages heading in the Atom settings and installing from there.
 
-#Manual Installation
+# Manual Installation
 
 Alternatively, you can install the package manually by placing the `language-revabyes/` directory into `~/.atom/packages/`.
 
