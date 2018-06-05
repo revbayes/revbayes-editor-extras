@@ -12,6 +12,6 @@ Alternatively, you can install the package manually by placing the `language-rev
 
 That would look something like this (double check the URL):
 ```
-git clone https://github.com/revbayes/revbayes-editor/extra/atom
+git clone https://github.com/revbayes/revbayes-editor-extra/atom
 mkdir -p ~/.atom/packages && cp -r ./language-revbayes ~/.atom/packages/
 ```
