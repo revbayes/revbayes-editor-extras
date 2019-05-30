@@ -44,7 +44,7 @@ patterns: [
   }
   {
         #revbayes functions/distributions etc.
-        match: '(dn\\w*)|(mv\\w*)|(mn\\w*)|(fn\\w*)'
+        match: '(dn\\w*)|(\\bmv\\w*)|(\bmn\\w*)|(fn\\w*)'
         name: 'storage.function'
   }
   {
